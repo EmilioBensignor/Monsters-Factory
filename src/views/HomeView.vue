@@ -1,121 +1,130 @@
 <template>
-  <div class="forms-display">
-    <form v-on:submit.prevent>
-      <fieldset class="gridForms">
-        <div class="form-fila">
-          <div>
-            <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" v-model="monstruo.nombre">
-            <div class="divError">
-              <p :class="verificar.nombre ? 'mostrarError' : 'ocultarError'">Ingrese un nombre</p>
-            </div>
-          </div>
-          <div>
-            <label for="apodo">Apodo</label>
-            <input type="text" id="apodo" v-model="monstruo.apodo">
-            <div class="divError">
-              <p :class="verificar.apodo ? 'mostrarError' : 'ocultarError'">Ingrese un apodo</p>
-            </div>
-          </div>
-          <div>
-            <label for="profesion">Profesión</label>
-            <input type="text" id="profesion" v-model="monstruo.profesion">
-            <div class="divError">
-              <p :class="verificar.profesion ? 'mostrarError' : 'ocultarError'">Ingrese una profesión</p>
-            </div>
-          </div>
-        </div>
-        <div class="form-fila">
-          <div>
-            <label for="peso">Peso</label>
-            <input type="number" id="peso" v-model.number="monstruo.peso">
-            <div class="divError">
-              <p :class="verificar.peso ? 'mostrarError' : 'ocultarError'">Ingrese un peso mayor a 0</p>
-            </div>
-          </div>
-          <div>
-            <label for="altura">Altura</label>
-            <input type="number" id="altura" v-model.number="monstruo.altura">
-            <div class="divError">
-              <p :class="verificar.altura ? 'mostrarError' : 'ocultarError'">Ingrese una altura mayor a 0</p>
-            </div>
-          </div>
-          <div class="selectForm">
-            <label for="color">Color</label>
-            <select id="color" v-model="monstruo.color">
-              <option v-for="item in options" v-bind:value="item.value" v-bind:key="item.value">
-                {{ item.text }}
-              </option>
-            </select>
-            <div class="divError">
-              <p :class="verificar.color ? 'mostrarError' : 'ocultarError'">Ingrese un color</p>
-            </div>
-          </div>
-        </div>
-      </fieldset>
-      <fieldset class="sectionAtributos">
-        <div class="h2-span">
-          <h2>Elige los atributos de tu monstruo</h2>
-          <div class="divSpanPuntos">
-            <span>{{ puntos }}</span>
-          </div>
-        </div>
-        <div class="pDescripcion">
-          <p>Tienes 15 puntos para distribuir entre los atributos de tu monstruo. Recuerda que si no utilizas todos los
-            puntos ¡tu monstruo será menos poderoso!</p>
-        </div>
-        <div class="divAtributos">
-          <div>
-            <p>Fuerza</p>
+  <div>
+    <div class="divBienvenida">
+      <div class="bienvenida">
+        <h1>Creá tu monstruo aterrador</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium aliquid eum vel, fugit ullam laborum. Laudantium eos nostrum cupiditate exercitationem, voluptates iste ab ratione eius optio velit eaque fugit voluptatum. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed nemo eaque culpa excepturi alias itaque exercitationem illum unde odio debitis, sint dolorum illo officia repellendus at nesciunt eligendi nisi magnam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum natus ut in dolorem inventore ipsum ducimus, ab atque qui tenetur hic cum ullam eum blanditiis minima modi, reprehenderit vel autem?
+        </p>
+      </div>
+    </div>
+    <div class="forms-display">
+      <form v-on:submit.prevent>
+        <fieldset class="gridForms">
+          <div class="form-fila">
             <div>
-              <button class="btnResta" @click="bajarOSubirCant('menos', 'fuerza')">-</button>
-              <span>{{ monstruo.cantFuerza }}</span>
-              <button class="btnSuma" @click="bajarOSubirCant('mas', 'fuerza')">+</button>
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" v-model="monstruo.nombre">
+              <div class="divError">
+                <p :class="verificar.nombre ? 'mostrarError' : 'ocultarError'">Ingrese un nombre</p>
+              </div>
             </div>
-          </div>
-          <div>
-            <p>Agilidad</p>
             <div>
-              <button class="btnResta" @click="bajarOSubirCant('menos', 'agilidad')">-</button>
-              <span>{{ monstruo.cantAgilidad }}</span>
-              <button class="btnSuma" @click="bajarOSubirCant('mas', 'agilidad')">+</button>
+              <label for="apodo">Apodo</label>
+              <input type="text" id="apodo" v-model="monstruo.apodo">
+              <div class="divError">
+                <p :class="verificar.apodo ? 'mostrarError' : 'ocultarError'">Ingrese un apodo</p>
+              </div>
             </div>
-          </div>
-          <div>
-            <p>Inteligencia</p>
             <div>
-              <button class="btnResta" @click="bajarOSubirCant('menos', 'inteligencia')">-</button>
-              <span>{{ monstruo.cantInteligencia }}</span>
-              <button class="btnSuma" @click="bajarOSubirCant('mas', 'inteligencia')">+</button>
+              <label for="profesion">Profesión</label>
+              <input type="text" id="profesion" v-model="monstruo.profesion">
+              <div class="divError">
+                <p :class="verificar.profesion ? 'mostrarError' : 'ocultarError'">Ingrese una profesión</p>
+              </div>
             </div>
           </div>
+          <div class="form-fila">
+            <div>
+              <label for="peso">Peso</label>
+              <input type="number" id="peso" v-model.number="monstruo.peso">
+              <div class="divError">
+                <p :class="verificar.peso ? 'mostrarError' : 'ocultarError'">Ingrese un peso mayor a 0</p>
+              </div>
+            </div>
+            <div>
+              <label for="altura">Altura</label>
+              <input type="number" id="altura" v-model.number="monstruo.altura">
+              <div class="divError">
+                <p :class="verificar.altura ? 'mostrarError' : 'ocultarError'">Ingrese una altura mayor a 0</p>
+              </div>
+            </div>
+            <div class="selectForm">
+              <label for="color">Color</label>
+              <select id="color" v-model="monstruo.color">
+                <option v-for="item in options" v-bind:value="item.value" v-bind:key="item.value">
+                  {{ item.text }}
+                </option>
+              </select>
+              <div class="divError">
+                <p :class="verificar.color ? 'mostrarError' : 'ocultarError'">Ingrese un color</p>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset class="sectionAtributos">
+          <div class="h2-span">
+            <h2>Elige los atributos de tu monstruo</h2>
+            <div class="divSpanPuntos">
+              <span>{{ puntos }}</span>
+            </div>
+          </div>
+          <div class="pDescripcion">
+            <p>Tienes 15 puntos para distribuir entre los atributos de tu monstruo. Recuerda que si no utilizas todos los
+              puntos ¡tu monstruo será menos poderoso!</p>
+          </div>
+          <div class="divAtributos">
+            <div>
+              <p>Fuerza</p>
+              <div>
+                <button class="btnResta" @click="bajarOSubirCant('menos', 'fuerza')">-</button>
+                <span>{{ monstruo.cantFuerza }}</span>
+                <button class="btnSuma" @click="bajarOSubirCant('mas', 'fuerza')">+</button>
+              </div>
+            </div>
+            <div>
+              <p>Agilidad</p>
+              <div>
+                <button class="btnResta" @click="bajarOSubirCant('menos', 'agilidad')">-</button>
+                <span>{{ monstruo.cantAgilidad }}</span>
+                <button class="btnSuma" @click="bajarOSubirCant('mas', 'agilidad')">+</button>
+              </div>
+            </div>
+            <div>
+              <p>Inteligencia</p>
+              <div>
+                <button class="btnResta" @click="bajarOSubirCant('menos', 'inteligencia')">-</button>
+                <span>{{ monstruo.cantInteligencia }}</span>
+                <button class="btnSuma" @click="bajarOSubirCant('mas', 'inteligencia')">+</button>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <div class="btnCrear">
+          <button @click="validarCampos(monstruo)">Crear monstruo</button>
         </div>
-      </fieldset>
-      <div class="btnCrear">
-        <button @click="validarCampos(monstruo)">Crear monstruo</button>
-      </div>
-    </form>
-    <div class="cardPrincipal">
-      <div class="divH3">
-        <h3 v-if="monstruo.nombre !== ''">{{ monstruo.nombre | uppercase }} <span v-if="monstruo.apodo !== ''">"{{
-          monstruo.apodo | capitalize }}"</span></h3>
-      </div>
-      <div class="divImgMonstruo">
-        <img v-if="monstruo.color" :src="obtenerUrlImg(monstruo.color)" :alt="obtenerAltImg(monstruo.color)">
-      </div>
-      <div class="divProfesion">
-        <p v-if="monstruo.profesion !== ''"><strong>Profesión:</strong> {{ this.monstruo.profesion | capitalize }} </p>
-      </div>
-      <div class="divPeso">
-        <p v-if="monstruo.peso > 0"><strong>Peso:</strong> {{ this.monstruo.peso }} kg </p>
-      </div>
-      <div class="divAltura">
-        <p v-if="monstruo.altura > 0"><strong>Altura:</strong> {{ this.monstruo.altura }} cm </p>
-      </div>
-      <div class="divAtributosCard">
-        <p><strong>Fuerza:</strong> {{ this.monstruo.cantFuerza }} </p>
-        <p><strong>Agilidad:</strong> {{ this.monstruo.cantAgilidad }} </p>
-        <p><strong>Inteligencia:</strong> {{ this.monstruo.cantInteligencia }} </p>
+      </form>
+      <div class="cardPrincipal">
+        <div class="divH3">
+          <h3 v-if="monstruo.nombre !== ''">{{ monstruo.nombre | uppercase }} <span v-if="monstruo.apodo !== ''">"{{
+            monstruo.apodo | capitalize }}"</span></h3>
+        </div>
+        <div class="divImgMonstruo">
+          <img v-if="monstruo.color" :src="obtenerUrlImg(monstruo.color)" :alt="obtenerAltImg(monstruo.color)">
+        </div>
+        <div class="divProfesion">
+          <p v-if="monstruo.profesion !== ''"><strong>Profesión:</strong> {{ this.monstruo.profesion | capitalize }} </p>
+        </div>
+        <div class="divPeso">
+          <p v-if="monstruo.peso > 0"><strong>Peso:</strong> {{ this.monstruo.peso }} kg </p>
+        </div>
+        <div class="divAltura">
+          <p v-if="monstruo.altura > 0"><strong>Altura:</strong> {{ this.monstruo.altura }} cm </p>
+        </div>
+        <div class="divAtributosCard">
+          <p><strong>Fuerza:</strong> {{ this.monstruo.cantFuerza }} </p>
+          <p><strong>Agilidad:</strong> {{ this.monstruo.cantAgilidad }} </p>
+          <p><strong>Inteligencia:</strong> {{ this.monstruo.cantInteligencia }} </p>
+        </div>
       </div>
     </div>
   </div>
@@ -290,29 +299,25 @@ export default {
 </script>
 
 <style>
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Montserrat', sans-serif;
+/* Bienvenida */
+.divBienvenida{
   width: 100%;
-  background-color: #D5E0B8;
+  display: flex;
+  justify-content: center;
+  margin-top: 2vw;
 }
 
-h1 {
+.bienvenida{
+  width: 70vw;
+}
+
+h1{
   text-align: center;
-  background-color: #485525;
-  color: #DEE6C6;
-  border-bottom: 3px solid #282F0E;
-  font-size: 3vw;
-  padding: 1.5vw;
+  margin-bottom: 1vw;
 }
 
-h2 {
-  font-size: 1.7vw;
+.bienvenida p{
+  text-align: center;
 }
 
 /* Forms */
@@ -321,7 +326,7 @@ h2 {
   display: flex;
   justify-content: space-around;
   width: 100%;
-  margin-top: 4vw;
+  margin: 2vw 0;
 }
 
 form {

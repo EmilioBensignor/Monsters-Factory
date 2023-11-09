@@ -1,7 +1,6 @@
 <template>
   <v-app>
     <v-navigation-drawer v-model="drawer" app>
-
       <v-list tag="ul">
         <li v-for="item in menu" :key="item.titulo">
           <v-list-item :to="item.path">
@@ -15,7 +14,6 @@
         </li>
       </v-list>
     </v-navigation-drawer>
-
     <v-app-bar class="primary" app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Monster Factory</v-toolbar-title>
@@ -54,4 +52,17 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.v-main__wrap{
+  background-color: #D5E0B8;
+}
+.v-navigation-drawer__content{
+  background-color: #D5E0B8;
+}
+ul{
+  list-style: none;
+}
+.v-application ul{
+  padding: 0;
+}
+</style>
