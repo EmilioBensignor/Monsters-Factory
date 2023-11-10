@@ -22,6 +22,7 @@
       <router-view />
     </v-main>
   </v-app>
+
 </template>
 
 <script>
@@ -47,9 +48,28 @@ export default {
         path: '/museo'
       }
     ],
+    arrayMonstruos: [],
+    arrayMuseo: [],
     drawer: null,
   }),
+  created() {
+    if (localStorage.local) {
+      this.arrayMonstruos = JSON.parse(localStorage.getItem('local'));
+    }
+    this.$route.meta.agregarMonstruo = this.agregarMonstruo;
+    this.$route.meta.arrayMonstruos = this.arrayMonstruos;
+    this.$route.meta.arrayMuseo = this.arrayMuseo;
+  },
+  watch:{
+    arrayMonstruos(newVal) {
+      this.$route.meta.arrayMonstruos = newVal;
+    },
+    arrayMuseo(newVal) {
+      this.$route.meta.arrayMuseo = newVal;
+    }
+  }
 };
+
 </script>
 
 <style>

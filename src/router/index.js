@@ -10,17 +10,19 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
   },
   {
     path: '/monsters',
     name: 'monsters',
-    component: MonstersView
+    component: MonstersView,
+    props: route => ({ arrayMonstruos: route.meta.arrayMonstruos })
   },
   {
     path: '/museo',
     name: 'museo',
-    component: MuseoView
+    component: MuseoView,
+    props: route => ({ arrayMuseo: route.meta.arrayMuseo })
   }
 ]
 

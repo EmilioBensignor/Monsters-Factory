@@ -131,8 +131,11 @@
 </template>
 
 <script>
+import filtros from './filters.js';
+
 export default {
   name: 'HomeView',
+  filters: filtros,
   data: function () {
     return {
       verificar: {
@@ -158,53 +161,28 @@ export default {
       },
       options: [
         { text: 'Seleccione', value: '' },
-        { text: 'Verde', value: 'verde', url: '../assets/monstruo_verde.png', alt: 'monstruo verde' },
-        { text: 'Azul', value: 'azul', url: '../assets/monstruo_azul.png', alt: 'monstruo azul' },
-        { text: 'Violeta', value: 'violeta', url: '../assets/monstruo_violeta.png', alt: 'monstruo violeta' },
-        { text: 'Rosa', value: 'rosa', url: '../assets/monstruo_rosa.png', alt: 'monstruo rosa' },
-        { text: 'Amarillo', value: 'amarillo', url: '../assets/monstruo_amarillo.png', alt: 'monstruo amarillo' }
+        { text: 'Verde', value: 'verde', url: require('../assets/monstruo_verde.png'), alt: 'monstruo verde' },
+        { text: 'Azul', value: 'azul', url: require('../assets/monstruo_azul.png'), alt: 'monstruo azul' },
+        { text: 'Violeta', value: 'violeta', url: require('../assets/monstruo_violeta.png'), alt: 'monstruo violeta' },
+        { text: 'Rosa', value: 'rosa', url: require('../assets/monstruo_rosa.png'), alt: 'monstruo rosa' },
+        { text: 'Amarillo', value: 'amarillo', url: require('../assets/monstruo_amarillo.png'), alt: 'monstruo amarillo' }
       ],
       puntos: 15,
+      arrayMonstruos: [],
     }
   },
   methods: {
-    validarCampos: function () {
-      if (this.monstruo.nombre === "") {
-        this.verificar.nombre = true;
-      } else {
-        this.verificar.nombre = false;
-        if (this.monstruo.apodo === "") {
-          this.verificar.apodo = true;
-        } else {
-          this.verificar.apodo = false;
-          if (this.monstruo.profesion === "") {
-            this.verificar.profesion = true;
-          } else {
-            this.verificar.profesion = false;
-            if (this.monstruo.peso <= 0) {
-              this.verificar.peso = true;
-            } else {
-              this.verificar.peso = false;
-              if (this.monstruo.altura <= 0) {
-                this.verificar.altura = true;
-              } else {
-                this.verificar.altura = false;
-                if (this.monstruo.color === "") {
-                  this.verificar.color = true;
-                } else {
-                  this.verificar.color = false;
-                  this.enviarFormulario(this.monstruo);
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     enviarFormulario: function (monstruo) {
-      this.agregarMonstruo(monstruo);
+      if (!localStorage.local) {
+        this.arrayMonstruos = []
+      } else {
+        this.arrayMonstruos = JSON.parse(localStorage.getItem('local'))
+      }
+      this.arrayMonstruos.push(monstruo);
+      localStorage.setItem('local', JSON.stringify(this.arrayMonstruos));
       this.monstruo = { nombre: "", apodo: "", profesion: "", peso: "", altura: "", cantFuerza: 0, cantAgilidad: 0, cantInteligencia: 0 };
       this.puntos = 15;
+      this.$router.push({name: 'monsters'});
     },
 
     bajarOSubirCant: function (modificacion, atributo) {
@@ -265,16 +243,40 @@ export default {
       }
     },
 
-    agregarMonstruo: function (nuevoMonstruo) {
-      if (!localStorage.local) {
-        this.arrayMonstruos = []
+    validarCampos: function () {
+      if (this.monstruo.nombre === "") {
+        this.verificar.nombre = true;
       } else {
-        this.arrayMonstruos = JSON.parse(localStorage.getItem('local'))
+        this.verificar.nombre = false;
+        if (this.monstruo.apodo === "") {
+          this.verificar.apodo = true;
+        } else {
+          this.verificar.apodo = false;
+          if (this.monstruo.profesion === "") {
+            this.verificar.profesion = true;
+          } else {
+            this.verificar.profesion = false;
+            if (this.monstruo.peso <= 0) {
+              this.verificar.peso = true;
+            } else {
+              this.verificar.peso = false;
+              if (this.monstruo.altura <= 0) {
+                this.verificar.altura = true;
+              } else {
+                this.verificar.altura = false;
+                if (this.monstruo.color === "") {
+                  this.verificar.color = true;
+                } else {
+                  this.verificar.color = false;
+                  this.enviarFormulario(this.monstruo);
+                }
+              }
+            }
+          }
+        }
       }
-      this.arrayMonstruos.push(nuevoMonstruo);
-      localStorage.setItem('local', JSON.stringify(this.arrayMonstruos));
-      this.$router.push('/monstruos');
     },
+
     obtenerUrlImg: function (colorSeleccionado) {
       for (const option of this.options) {
         if (option.value === colorSeleccionado) {
@@ -325,6 +327,7 @@ h1{
 .forms-display {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   width: 100%;
   margin: 2vw 0;
 }
